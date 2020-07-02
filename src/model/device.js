@@ -13,6 +13,9 @@ const deviceSchema =mongoose.Schema({
         type:String,
         required:true,
     },
+    runTime:{
+        type:Number,
+    },
     status:{
         type:String,
         default:'Off'
@@ -29,10 +32,20 @@ const deviceSchema =mongoose.Schema({
     batteryVoltage:{
         type:Number,
     },
+    imagePath:{
+        type:String
+    }
 },{
     timestamps:true
 })
 
+deviceSchema.toJSON=function(){
+    const device=this
+    const deviceObject =device.toObject();
+    deviceObject.id='helo'
+    
+    return deviceObject;
+}
 Device =mongoose.model('Device',deviceSchema)
 
 module.exports=Device

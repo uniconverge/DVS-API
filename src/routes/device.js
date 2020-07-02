@@ -2,6 +2,24 @@ const Device =require('../model/device')
 const express =require('express')
 const router =express.Router()
 
+//router.post('/device',async(req,res)=>{
+//    try{
+//       req.body.forEach((device)=>{
+//            try{
+//                await device.save()
+//            }catch(e){
+//                return e
+//            }
+//        })
+//        res.status(200).send()
+//    }
+//    catch(e){
+//        res.status(400).send()
+//    }
+//})
+
+
+
 router.post('/devices',async (req,res)=>{
     const device= new Device(req.body)
     try{
@@ -17,7 +35,7 @@ router.post('/devices',async (req,res)=>{
 router.get('/devices',async (req,res)=>{
     try{
         const devices=await Device.find({})
-        res.status(200).send(devices)
+        res.status(200).send(devices.reverse())
     }
     catch(e){
         res.status(400).send(e)
