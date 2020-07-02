@@ -3,4 +3,4 @@
 
 server is live @  
 
-https://alenthankz-iot-api.herokuapp.com
+https://alenthankz-iot-api.herokuapp.com/devices
