@@ -1,6 +1,6 @@
-# IoT-Integration  /
+# IoT-Integration  
 
 
-server is live @  /
+server is live @  
 
 https://alenthankz-iot-api.herokuapp.com
