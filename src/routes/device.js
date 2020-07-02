@@ -33,7 +33,7 @@ router.post('/devices',async (req,res)=>{
 router.get('/device',async (req,res)=>{
     try{
         const devices=await Device.find({}).sort({_id:-1}).limit(1)
-        res.status(200).send(devices.reverse())
+        res.status(200).send(devices[0])
     }
     catch(e){
         res.status(400).send(e)
