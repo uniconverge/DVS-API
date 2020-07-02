@@ -1,6 +1,6 @@
 const mongoose =require('mongoose');
 //
-mongoose.connect(MONGODB_URL,{
+mongoose.connect('mongodb+srv://Task_App:Alen223@thankz@cluster0-ddvww.mongodb.net/iot-api',{
     useNewUrlParser:true,
     useCreateIndex:true
 }).then((result)=>{
