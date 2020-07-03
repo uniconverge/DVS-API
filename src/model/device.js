@@ -5,13 +5,13 @@ const deviceSchema =mongoose.Schema({
         type:String,
         required:true,
     },
-    location:{
-        type:String,
-        required:true,
-    },
     modelNo:{
         type:String,
         required:true,
+    },
+    location:{
+        type:String,
+        
     },
     runTime:{
         type:Number,
