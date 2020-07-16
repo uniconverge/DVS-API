@@ -40,7 +40,7 @@ client.on('connect', () => {
 //   client.publish('solarcleaners/parameters3',JSON.stringify(obj3))
 
 
-  },10000)
+  },1000)
 
 
 })
