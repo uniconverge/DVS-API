@@ -1,26 +1,10 @@
 const Device =require('../model/device')
 const express =require('express')
+const Temperature = require('../model/temperature')
 const router =express.Router()
 
-//router.post('/device',async(req,res)=>{
-//    try{
-//       req.body.forEach((device)=>{
-//            try{
-//                await device.save()
-//            }catch(e){
-//                return e
-//            }
-//        })
-//        res.status(200).send()
-//    }
-//    catch(e){
-//        res.status(400).send()
-//    }
-//})
-
-
-
 router.post('/devices',async (req,res)=>{
+    //console.log(req.body)
     const device= new Device(req.body)
     try{
         await device.save()
@@ -33,6 +17,7 @@ router.post('/devices',async (req,res)=>{
 router.get('/device',async (req,res)=>{
     try{
         const devices=await Device.find({}).sort({_id:-1}).limit(1)
+        //console.log(devices[0])
         res.status(200).send(devices[0])
     }
     catch(e){
@@ -43,6 +28,24 @@ router.get('/device',async (req,res)=>{
 router.get('/devices',async (req,res)=>{
     try{
         const devices=await Device.find({})
+        await devices[0].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
+        .execPopulate()
+        await devices[1].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
+        .execPopulate()
+        await devices[2].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
+        .execPopulate()
         res.status(200).send(devices.reverse())
     }
     catch(e){
@@ -51,8 +54,17 @@ router.get('/devices',async (req,res)=>{
 })
 
 router.get('/devices/:id',async (req,res)=>{
+
     try{
+        //console.log(req.req.params['id'])
         const device =await Device.findOne({_id:req.params['id']})
+        await device
+        .populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
+        .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
+        .execPopulate()
         res.status(200).send(device)
     }catch(e){
         res.status(400).send(e);
