@@ -3,17 +3,17 @@ const express =require('express')
 const Temperature = require('../model/temperature')
 const router =express.Router()
 
-router.post('/devices',async (req,res)=>{
-    //console.log(req.body)
-    const device= new Device(req.body)
-    try{
-        await device.save()
-        res.status(200).send(device)
-    }
-    catch(e){
-        res.status(400).send(e)
-    }
-})
+// router.post('/devices',async (req,res)=>{
+//     //console.log(req.body)
+//     const device= new Device(req.body)
+//     try{
+//         await device.save()
+//         res.status(200).send(device)
+//     }
+//     catch(e){
+//         res.status(400).send(e)
+//     }
+// })
 router.get('/device',async (req,res)=>{
     try{
         const devices=await Device.find({}).sort({_id:-1}).limit(1)
