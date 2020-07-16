@@ -47,7 +47,7 @@ router.get('/device',async (req,res)=>{
 
 router.get('/devices',async (req,res)=>{
     try{
-        console.log("-------------------------------------")
+        //console.log("-------------------------------------")
         const devices=await Device.find({})
         await devices[0].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
         .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
@@ -67,12 +67,7 @@ router.get('/devices',async (req,res)=>{
         .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
         .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
         .execPopulate()
-        await devices[3].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
-        .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
-        .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
-        .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
-        .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
-        .execPopulate()
+        res.status(200).send(devices.reverse())
         res.status(200).send(devices.reverse())
     }
     catch(e){
