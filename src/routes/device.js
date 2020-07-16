@@ -14,6 +14,7 @@ const router =express.Router()
 //         res.status(400).send(e)
 //     }
 // })
+//just to check git 
 router.get('/device',async (req,res)=>{
     try{
         const devices=await Device.find({}).sort({_id:-1}).limit(1)
