@@ -1,6 +1,6 @@
 const mongoose =require('mongoose');
 //
-mongoose.connect('mongodb+srv://Task_App:Alen223@thankz@cluster0-ddvww.mongodb.net/iot-api',{
+mongoose.connect('mongodb+srv://Task_App:Alen223@thankz@cluster0-ddvww.mongodb.net/iot-test',{
     useNewUrlParser:true,
     useCreateIndex:true
 }).then((result)=>{
