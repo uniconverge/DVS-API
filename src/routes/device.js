@@ -82,7 +82,7 @@ router.delete('/devices/:id',async (req,res)=>{
         }
         res.status(200).send()
     }catch(e){
-        res.status(400).send()
+        res.status(400).send(e)
     }
 })
 
