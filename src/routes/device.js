@@ -13,7 +13,7 @@ router.post('/devices',async (req,res)=>{
         res.status(400).send(e)
     }
 })
-//just to check git 
+//just to check git
 router.get('/device',async (req,res)=>{
     try{
         const devices=await Device.find({}).sort({_id:-1}).limit(1)
@@ -38,7 +38,7 @@ router.get('/devices',async (req,res)=>{
             .execPopulate()
             i++
         }
-        
+
          res.status(200).send(devices.reverse())
     }
     catch(e){
@@ -80,9 +80,9 @@ router.delete('/devices/:id',async (req,res)=>{
         if(!device){
             res.status(400).send({error:'device not found'})
         }
-        res.status(200).send(device)
+        res.status(200).send()
     }catch(e){
-        res.status(400).send(device)
+        res.status(400).send()
     }
 })
 
