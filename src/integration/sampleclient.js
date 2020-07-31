@@ -13,7 +13,7 @@ client.on('connect', () => {
       {
         //id:"5effccb32fed7700171dc95f",
         id:"5f1195cc3655b21e88197c45",
-        status:Math.floor(Math.random() * 15)%3===0?'on':'off',
+        status:Math.floor(Math.random() * 15)%3===0?'off':'on',
         temperature:Math.floor(Math.random() * 27),
         humidity:Math.floor(Math.random() * 21),
         solarVoltage:Math.floor(Math.random() * 5.6),
@@ -22,7 +22,7 @@ client.on('connect', () => {
       {
         //id:"5eff627fc930480017ab64ed",
         id:"5f1195d23655b21e88197c46",
-        status:Math.floor(Math.random() * 15)%2===0?'on':'off',
+        status:Math.floor(Math.random() * 15)%2===0?'off':'on',
         temperature:Math.floor(Math.random() * 22),
         humidity:Math.floor(Math.random() * 15),
         solarVoltage:Math.floor(Math.random() * 4.6),
@@ -30,7 +30,7 @@ client.on('connect', () => {
       },
       {
         id:"5f242f0fecc9ae0017a1aefa",
-        status:Math.floor(Math.random() * 15)%5===0?'on':'off',
+        status:Math.floor(Math.random() * 15)%5===0?'off':'on',
         temperature:Math.floor(Math.random() * 32),
         humidity:Math.floor(Math.random() * 24),
         solarVoltage:Math.floor(Math.random() * 8.6),
