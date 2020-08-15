@@ -1,7 +1,7 @@
 const express =require('express')
 const app =express()
 require('./db/mongoose')
-require('./integration/sampleserver');
+require('./integration/server-subscriber');
 //setTimeout(()=>{
     require('./integration/sampleclient')
 //},3000)
