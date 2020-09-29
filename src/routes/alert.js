@@ -4,8 +4,8 @@ const router =express.Router()
 
 router.get('/alert',async(req,res)=>{
     try{
-        const alert=await Alert.find({});
-         res.send(alert);
+        const alerts=await Alert.find({});
+         res.send(alerts);
     }catch(e){
         res.send(e);
     }
