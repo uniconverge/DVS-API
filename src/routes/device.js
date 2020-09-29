@@ -1,12 +1,22 @@
 const Device =require('../model/device')
 const express =require('express')
+const Sensor = require('../model/sensorEnable')
 const router =express.Router()
 
 router.post('/devices',async (req,res)=>{
     //console.log(req.body)
     const device= new Device(req.body)
+    // console.log(device);
+    const sensor =new Sensor({
+        deviceid:device._id,
+        temperature:false,
+        humidity:false,
+        solarvoltage:false,
+        batteryvoltage:false,
+    })
     try{
         await device.save()
+        await sensor.save()
         res.status(200).send()
     }
     catch(e){
@@ -76,7 +86,7 @@ router.patch('/devices/:id',async(req,res)=>{
 router.delete('/devices/:id',async (req,res)=>{
     try{
         const device =await Device.findByIdAndDelete(req.params.id)
-
+        const sensor =await Sensor.deleteOne({deviceid:req.params.id});
         if(!device){
             res.status(400).send({error:'device not found'})
         }
@@ -85,6 +95,8 @@ router.delete('/devices/:id',async (req,res)=>{
         res.status(400).send(e)
     }
 })
+
+
 
 
 

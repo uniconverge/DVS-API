@@ -1,48 +1,41 @@
 const mqtt = require('mqtt')
 const client = mqtt.connect('mqtt://broker.hivemq.com')
-
+const Device =require('../model/device')
+const Sensor = require('../model/sensorEnable')
 
 
 var state = 'closed'
 
 client.on('connect', () => {
-    console.log('client')
-  client.publish('solarcleaners/connected', 'true')
-    setInterval(()=>{
-    var obj1=[
-      {
-        //id:"5effccb32fed7700171dc95f",
-        id:"5f460d0edfe5820017c12eba",
-        status:Math.floor(Math.random() * 15)%3===0?'off':'on',
-        temperature:Math.floor(Math.random() * 27),
-        humidity:Math.floor(Math.random() * 21),
-        solarVoltage:Math.floor(Math.random() * 5.6),
-        batteryVoltage:Math.floor(Math.random() * 11.9)
-      },
-      {
-        //id:"5eff627fc930480017ab64ed",
-        id:"5f460d2fdfe5820017c12ebb",
-        status:Math.floor(Math.random() * 15)%2===0?'off':'on',
-        temperature:Math.floor(Math.random() * 22),
-        humidity:Math.floor(Math.random() * 15),
-        solarVoltage:Math.floor(Math.random() * 4.6),
-        batteryVoltage:Math.floor(Math.random() * 9.9)
-      },
-      {
-        id:"5f242f0fecc9ae0017a1aefa",
-        status:Math.floor(Math.random() * 15)%5===0?'off':'on',
-        temperature:Math.floor(Math.random() * 32),
-        humidity:Math.floor(Math.random() * 24),
-        solarVoltage:Math.floor(Math.random() * 8.6),
-        batteryVoltage:Math.floor(Math.random() * 15.9)
-      }
-    ]
-  client.publish('solarcleaners/parameters',JSON.stringify(obj1))
-  //client.publish('solarcleaners/parameters2',JSON.stringify(obj2))
-//   client.publish('solarcleaners/parameters3',JSON.stringify(obj3))
-
-
-  },1000)
-
-
+  console.log('client')
+  client.publish('solarcleaners/connected', 'true');
+  (async()=>{
+    try{
+      setInterval(async ()=>{
+        const devices=await Device.find({});
+        const sensors=await Sensor.find({});
+        var obj=[];
+        for(var i=0;i<devices.length;i++){
+          // console.log(devices[i]._id,sensors[i].deviceid);
+          obj.push(
+                {
+                      //id:"5effccb32fed7700171dc95f",
+                      id:devices[i]._id,
+                      status:Math.floor(Math.random() * (15+i))%3===0?'off':'on',
+                      temperature:sensors[i].temperature==true? 15+ Math.floor(Math.random() * (20+i)):null,
+                      humidity:sensors[i].humidity==true?10 + Math.floor(Math.random() * (14+i)):null,
+                      solarVoltage:sensors[i].solarvoltage==true?1.3+ Math.floor(Math.random() * (4+i)):null,
+                      batteryVoltage:sensors[i].batteryvoltage==true?5+Math.floor(Math.random() * (6+i)):null
+                }
+          );
+        }
+        // console.log(" ")
+        client.publish('solarcleaners/parameters',JSON.stringify(obj))
+      },1000)
+    }
+    catch(e){
+      console.log(e);
+    }
+  })();
+  
 })
