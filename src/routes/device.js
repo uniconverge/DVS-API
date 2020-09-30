@@ -44,10 +44,10 @@ router.get('/devices',async (req,res)=>{
         // const devices=await Device.find({})
         // var i=0
         while(i<devices.length){
-            await devices[i].populate({path:'temperature',options:{limit:number,sort:{createdAt:-1}}})
-            .populate({path:'humidity',options:{limit:number,sort:{createdAt:-1}}})
-            .populate({path:'solarVoltage',options:{limit:number,sort:{createdAt:-1}}})
-            .populate({path:'batteryVoltage',options:{limit:number,sort:{createdAt:-1}}})
+            await devices[i].populate({path:'temperature',options:{limit:5,sort:{createdAt:-1}}})
+            .populate({path:'humidity',options:{limit:5,sort:{createdAt:-1}}})
+            .populate({path:'solarVoltage',options:{limit:5,sort:{createdAt:-1}}})
+            .populate({path:'batteryVoltage',options:{limit:5,sort:{createdAt:-1}}})
             .populate({path:'status',options:{limit:1,sort:{createdAt:-1}}})
             .execPopulate()
             i++
