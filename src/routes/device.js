@@ -1,6 +1,7 @@
 const Device =require('../model/device')
 const express =require('express')
 const Sensor = require('../model/sensorEnable')
+const Points = require('../model/points')
 const router =express.Router()
 
 router.post('/devices',async (req,res)=>{
@@ -37,8 +38,8 @@ router.get('/device',async (req,res)=>{
 
 router.get('/devices',async (req,res)=>{
     try{
-
-        var limit=5;
+        nopoints=await Points.find({});
+        var limit=nopoints[0].value;
         // if(req.query.number){
         //     limit=req.query.number;
         // }
