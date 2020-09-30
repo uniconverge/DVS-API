@@ -39,9 +39,9 @@ router.get('/devices',async (req,res)=>{
     try{
 
         var limit=5;
-        if(req.query.number){
-            limit=req.query.number;
-        }
+        // if(req.query.number){
+        //     limit=req.query.number;
+        // }
         const devices=await Device.find({})
         var i=0
         while(i<devices.length){
