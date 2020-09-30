@@ -31,34 +31,34 @@ router.patch('/alert/:id',async(req,res)=>{
 
 
 
-// router.get('/nopoints',async(req,res)=>{
-//     try {
-//         const nopoints =await Points.find({});
-//         res.send(nopoints[0]);
-//     } catch (e) {
-//         res.send(e);
-//     }
-// })
-// router.post('/nopoints/:id',async(req,res)=>{
-//     try {
-//         const nopoints =new Points({value:req.params.id});
-//         await nopoints.save();
-//         res.send(nopoints);
-//     } catch (e) {
-//         res.send(e);
-//     }
-// })
+router.get('/nopoints',async(req,res)=>{
+    try {
+        const nopoints =await Points.find({});
+        res.send(nopoints[0]);
+    } catch (e) {
+        res.send(e);
+    }
+})
+router.post('/nopoints/:id',async(req,res)=>{
+    try {
+        const nopoints =new Points({value:req.params.id});
+        await nopoints.save();
+        res.send(nopoints);
+    } catch (e) {
+        res.send(e);
+    }
+})
 
-// router.patch('/nopoints/:id',async(req,res)=>{
-//     try {
-//         const nopoints =await Points.find({});
-//         const points =await Points.findByIdAndUpdate(nopoints[0]._id,{value:req.params.id},{new:true})
+router.patch('/nopoints/:id',async(req,res)=>{
+    try {
+        const nopoints =await Points.find({});
+        const points =await Points.findByIdAndUpdate(nopoints[0]._id,{value:req.params.id},{new:true})
 
-//         res.send(points);
-//     } catch (e) {
-//         console.log(e)
-//         res.send(e);
-//     }
-// })
+        res.send(points);
+    } catch (e) {
+        console.log(e)
+        res.send(e);
+    }
+})
 
 module.exports=router;
